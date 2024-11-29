@@ -8,6 +8,6 @@ import kotlinx.serialization.Serializable
 data class PokemonResponse(
     val count: Int,
     val next: String,
-    val previous: String,
+    val previous: String?,
     @SerialName("results") val results: List<Pokemon>
 )

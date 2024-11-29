@@ -12,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -52,7 +53,7 @@ fun App(root: RootComponent) {
                         {
                             IconButton(onClick = { root.onBackPressed() }) {
                                 Icon(
-                                    Icons.AutoMirrored.Filled.ArrowBack,
+                                    Icons.Default.ArrowBackIosNew,
                                     contentDescription = "back"
                                 )
                             }
