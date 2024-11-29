@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.DrawableResource
@@ -48,15 +49,15 @@ fun HomeCard(
                 text = text,
                 style = MaterialTheme.typography.body1.copy(
                     color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
+                    fontWeight = FontWeight.Bold,
+                    )
             )
             // Icon
             Icon(
                 painter = painterResource(icon),
                 contentDescription = text,
                 tint = Color.White,
-                modifier = Modifier.size(32.dp).shadow(5.dp)
+                modifier = Modifier.size(32.dp)
             )
         }
     }

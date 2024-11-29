@@ -1,6 +1,5 @@
 package com.yotsuki.pokedek.presentation.home
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -44,12 +43,12 @@ fun Home(component: HomeComponent) {
             ) {
                 HomeCard(
                     backgroundColor = Color(0xFFEA5656),
-                    icon = Res.drawable.sports_and_outdoors, // ใช้ไอคอน Pokedex
+                    icon = Res.drawable.sports_and_outdoors,
                     text = "Pokedex"
                 ) { component.onClickToPokeList() }
                 HomeCard(
                     backgroundColor = Color(0xFFFFA726),
-                    icon = Res.drawable.electric_boltx, // ใช้ไอคอน Moves
+                    icon = Res.drawable.electric_boltx,
                     text = "Moves"
                 ) { }
             }
@@ -60,7 +59,7 @@ fun Home(component: HomeComponent) {
             ) {
                 HomeCard(
                     backgroundColor = Color(0xFF66BB6A),
-                    icon = Res.drawable.genetics, // ใช้ไอคอน Evolutions
+                    icon = Res.drawable.genetics,
                     text = "Evolutions"
                 ) { }
                 HomeCard(

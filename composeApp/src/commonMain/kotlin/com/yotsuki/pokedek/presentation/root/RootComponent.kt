@@ -5,8 +5,8 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.pushNew
-import com.yotsuki.pokedek.presentation.info.InfoComponent
 import com.yotsuki.pokedek.presentation.home.HomeComponent
+import com.yotsuki.pokedek.presentation.info.InfoComponent
 import com.yotsuki.pokedek.presentation.pokedex.PokedexComponent
 import kotlinx.serialization.Serializable
 
@@ -23,6 +23,10 @@ class RootComponent(
         handleBackButton = true,
         childFactory = ::createChild
     )
+
+    fun onBackPressed() {
+        navigation.pop()
+    }
 
     private fun createChild(
         config: Config,

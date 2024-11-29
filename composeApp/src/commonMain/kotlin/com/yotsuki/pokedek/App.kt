@@ -4,13 +4,19 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -28,7 +34,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun App(root: RootComponent) {
     val childStack by root.childStack.subscribeAsState()
-
+    var currentPath by remember { mutableStateOf("") }
     MaterialTheme {
         Scaffold(
             backgroundColor = Color(0xFFECF0F1),
@@ -37,7 +43,20 @@ fun App(root: RootComponent) {
                 TopAppBar(
                     backgroundColor = MaterialTheme.colors.surface,
                     title = {
-                        Text("Top app bar")
+                        Text(text = currentPath)
+                    },
+                    navigationIcon =
+                    if (currentPath == "Home") {
+                        null
+                    } else {
+                        {
+                            IconButton(onClick = { root.onBackPressed() }) {
+                                Icon(
+                                    Icons.AutoMirrored.Filled.ArrowBack,
+                                    contentDescription = "back"
+                                )
+                            }
+                        }
                     }
                 )
                 Spacer(modifier = Modifier.height(15.dp).padding(20.dp))
@@ -48,13 +67,23 @@ fun App(root: RootComponent) {
                 animation = stackAnimation(slide())
             ) { child ->
                 when (val instance = child.instance) {
-                    is RootComponent.Child.HomeScreen -> Home(instance.component)
-                    is RootComponent.Child.Info -> Info(
-                        instance.component.text,
-                        instance.component,
-                    )
+                    is RootComponent.Child.HomeScreen -> {
+                        currentPath = "Home"
+                        Home(instance.component)
+                    }
 
-                    is RootComponent.Child.Pokedexs -> Pokedex(instance.component)
+                    is RootComponent.Child.Info -> {
+                        currentPath = "Info"
+                        Info(
+                            instance.component.text,
+                            instance.component,
+                        )
+                    }
+
+                    is RootComponent.Child.Pokedexs -> {
+                        currentPath = "Pokedexs"
+                        Pokedex(instance.component)
+                    }
                 }
             }
         }
